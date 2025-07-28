@@ -12,6 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .container {
@@ -80,4 +81,23 @@ body {
 .form-content.error a {
     color: #ff3b25;
     visibility: visible;
+}
+
+.productList {
+    background-color: #fafafa;
+    border-radius: 14px;
+    margin: 14px;
+    max-width: 600px;
+    width: 100%;
+    box-sizing: 0 3px 5px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.header-list {
+    background: linear-gradient(120deg, #3acbf0 0%, #8bb0ff 100%);
+    padding: 24px;
+    text-align: center;
+    color: #fff;
+    background-color: #fafafa;
+    border-radius: 14px;
 }
