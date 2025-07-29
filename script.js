@@ -2,6 +2,7 @@ const form = document.getElementById('form');
 const product = document.getElementById('product');
 const price = document.getElementById('price');
 const category = document.getElementById('category');
+const priductList = document.getElementById('orderedList');
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -70,6 +71,7 @@ function checkForm() {
 
     if (isValid) {
         alert('PRODUTO CADASTRADO COM SUCESSO!');
+        form.reset();
     }
 
 }
@@ -84,9 +86,58 @@ function errorInput(input, message) {
 }
 
 class Product {
-    constructor(name, price, category){
+    constructor(name, price, category) {
         this.name = name;
         this.price = price;
         this.category = category;
+    }
+}
+
+class ProductManager {
+    constructor() {
+        this.products = [];
+        this.listElement = document.getElementById('orderedList');
+    }
+
+    adicionarProduto(produto) {
+        this.products.push(produto);
+        this.listarProdutos();
+    }
+
+    removerProduto(index) {
+        this.products.splice(index, 1);
+        this.listarProdutos();
+    }
+
+    listarProdutos() {
+        this.listElement.innerHTML = '';
+
+        this.products.forEach((produto, index) => {
+            const li = document.createElement('li');
+            li.textContent = `${produto.name} - R$${parseFloat(produto.price).toFixed(2)} - ${produto.category}`;
+
+            const btn = document.createElement('button');
+            btn.textContent = 'Remover';
+            btn.style.marginLeft = '10px';
+            btn.onclick = () => this.removerProduto(index);
+
+            li.appendChild(btn);
+            this.listElement.appendChild(li);
+        });
+    }
+}
+
+// Instanciando o gerenciador
+const manager = new ProductManager();
+
+// Substitua a função antiga:
+function registerProduct() {
+    const name = product.value.trim();
+    const priceValue = parseFloat(price.value);
+    const cat = category.value.trim();
+
+    if (name && priceValue > 0 && cat) {
+        const newProduct = new Product(name, priceValue, cat);
+        manager.adicionarProduto(newProduct);
     }
 }

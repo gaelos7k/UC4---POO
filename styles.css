@@ -99,5 +99,23 @@ body {
     text-align: center;
     color: #fff;
     background-color: #fafafa;
-    border-radius: 14px;
+    border-radius: 14px 14px 0 0;
+}
+
+.orderedList li {
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 32%;
+}
+
+.orderedList button {
+    background-color: #ff3b25;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 2px 7px 0px 2px;
 }
