@@ -1,3 +1,4 @@
+// Recuperando os valores do HTML para manipulção DOM do Javascript
 const form = document.getElementById('form');
 const product = document.getElementById('product');
 const price = document.getElementById('price');
@@ -95,17 +96,20 @@ class Product {
 
 class ProductManager {
     constructor() {
-        this.products = [];
         this.listElement = document.getElementById('orderedList');
+        this.products = JSON.parse(localStorage.getItem('produtos')) || [];
+        this.listarProdutos();
     }
 
     adicionarProduto(produto) {
         this.products.push(produto);
+        this.salvarProdutos();
         this.listarProdutos();
     }
 
     removerProduto(index) {
         this.products.splice(index, 1);
+        this.salvarProdutos();
         this.listarProdutos();
     }
 
@@ -114,16 +118,22 @@ class ProductManager {
 
         this.products.forEach((produto, index) => {
             const li = document.createElement('li');
-            li.textContent = `${produto.name} - R$${parseFloat(produto.price).toFixed(2)} - ${produto.category}`;
+
+            const span = document.createElement('span');
+            span.textContent = `${produto.name} - R$${parseFloat(produto.price).toFixed(2)} - ${produto.category}`;
 
             const btn = document.createElement('button');
             btn.textContent = 'Remover';
-            btn.style.marginLeft = '10px';
             btn.onclick = () => this.removerProduto(index);
 
+            li.appendChild(span);
             li.appendChild(btn);
             this.listElement.appendChild(li);
         });
+    }
+
+    salvarProdutos() {
+        localStorage.setItem('produtos', JSON.stringify(this.products));
     }
 }
 
