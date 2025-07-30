@@ -140,7 +140,6 @@ class ProductManager {
 // Instanciando o gerenciador
 const manager = new ProductManager();
 
-// Substitua a função antiga:
 function registerProduct() {
     const name = product.value.trim();
     const priceValue = parseFloat(price.value);
