@@ -29,7 +29,7 @@ function checkInputProduct() {
     const productValue = product.value;
 
     if (productValue === '') {
-        errorInput(product, 'Digite o nome do produto');
+        errorInput(product, 'Digite o nome do produto.');
     } else {
         const formItem = product.parentElement;
         formItem.className = 'form-content';
