@@ -21,7 +21,7 @@ body {
     margin: 14px;
     max-width: 600px;
     width: 100%;
-    box-sizing: 0 3px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
     overflow: hidden;
 }
 
@@ -89,7 +89,7 @@ body {
     margin: 14px;
     max-width: 600px;
     width: 100%;
-    box-sizing: 0 3px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
     overflow: hidden;
 }
 
@@ -134,16 +134,6 @@ body {
 .orderedList li span {
     flex: 1;
     text-align: left;
-}
-
-.orderedList button {
-    background-color: #ff3b25;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
 }
 
 .orderedList button:hover {

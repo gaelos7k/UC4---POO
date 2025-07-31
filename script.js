@@ -3,7 +3,6 @@ const form = document.getElementById('form');
 const product = document.getElementById('product');
 const price = document.getElementById('price');
 const category = document.getElementById('category');
-const priductList = document.getElementById('orderedList');
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
