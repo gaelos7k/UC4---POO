@@ -144,6 +144,7 @@ class ProductManager {
         });
     }
 
+    //Método para persistir os dados no local storage
     salvarProdutos() {
         localStorage.setItem('produtos', JSON.stringify(this.products));
     }
