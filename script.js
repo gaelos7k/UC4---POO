@@ -4,12 +4,14 @@ const product = document.getElementById('product');
 const price = document.getElementById('price');
 const category = document.getElementById('category');
 
+//Quando o usuário clicar em cadastrar produto, serão feitas as verificações com a funcão checkForm();
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
     checkForm();
 });
 
+//Funcionalidades para quando o usuário sair dos campos sem preenchimento correto
 product.addEventListener('blur', (event) => {
     checkInputProduct();
 });
@@ -22,6 +24,7 @@ category.addEventListener('blur', (event) => {
     checkInputCategory();
 });
 
+//Função para verificar a entrada do nome do produto
 function checkInputProduct() {
     const productValue = product.value;
 
@@ -34,19 +37,21 @@ function checkInputProduct() {
 
 }
 
+//Função para verificar a entrada do preço do produto
 function checkInputPrice() {
     const priceValue = price.value;
 
     if (priceValue === '') {
         errorInput(price, 'O preço é obrigatório.');
     } else if (priceValue < 1) {
-        errorInput(price, 'O preço precisa ser maior que 0.');
+        errorInput(price, 'O preço precisa ser maior que R$0.');
     } else {
         const formItem = price.parentElement;
         formItem.className = 'form-content';
     }
 }
 
+//Função para verificar a entrada da categoria do produto
 function checkInputCategory() {
     const categoryValue = category.value;
 
@@ -58,6 +63,7 @@ function checkInputCategory() {
     }
 }
 
+//Função para verificar todas as entrada do usuário uma a uma e verificar se todas estão preenchidas
 function checkForm() {
     checkInputProduct();
     checkInputPrice();
@@ -76,6 +82,7 @@ function checkForm() {
 
 }
 
+//Função para quando houver erro na entrada do usuário
 function errorInput(input, message) {
     const formItem = input.parentElement;
     const textMessage = formItem.querySelector('a');
@@ -85,6 +92,8 @@ function errorInput(input, message) {
     formItem.className = 'form-content error';
 }
 
+
+//Criação classe do produto
 class Product {
     constructor(name, price, category) {
         this.name = name;
@@ -93,6 +102,7 @@ class Product {
     }
 }
 
+//Criação da classe para gerenciar os produtos
 class ProductManager {
     constructor() {
         this.listElement = document.getElementById('orderedList');
@@ -106,12 +116,14 @@ class ProductManager {
         this.listarProdutos();
     }
 
+    //Método do botão remover para remover o item desejado
     removerProduto(index) {
         this.products.splice(index, 1);
         this.salvarProdutos();
         this.listarProdutos();
     }
 
+    //Método para criar os itens da lista de produtos cadastrados
     listarProdutos() {
         this.listElement.innerHTML = '';
 
@@ -119,8 +131,9 @@ class ProductManager {
             const li = document.createElement('li');
 
             const span = document.createElement('span');
-            span.textContent = `${produto.name} - R$${parseFloat(produto.price).toFixed(2)} - ${produto.category}`;
+            span.textContent = `${produto.name} - R$${parseFloat(produto.price).toFixed(2)} - ${produto.category}`; //Preço dos produtos com valores reais
 
+            //Criação do botão 'Remover' para cada item de lista criado
             const btn = document.createElement('button');
             btn.textContent = 'Remover';
             btn.onclick = () => this.removerProduto(index);
@@ -145,6 +158,7 @@ function registerProduct() {
     const cat = category.value.trim();
 
     if (name && priceValue > 0 && cat) {
+        //Instânciando a classe do produto
         const newProduct = new Product(name, priceValue, cat);
         manager.adicionarProduto(newProduct);
     }
